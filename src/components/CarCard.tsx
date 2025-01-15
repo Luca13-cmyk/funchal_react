@@ -18,8 +18,7 @@ interface CarCardProps {
 const CarCard = ({ car }: CarCardProps) => {
   const navigate = useNavigate();
 
-  const { _id, available, brand, features, imgUrl, model, name, price, slug } =
-    car;
+  const { _id, available, imgUrl, model, name, price } = car;
 
   const [isOpen, setIsOpen] = useState(false);
 

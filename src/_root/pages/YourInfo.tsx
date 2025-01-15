@@ -1,17 +1,9 @@
-import { useNavigate, useParams } from "react-router-dom";
-import { ContactProps } from "../../types";
 import { useGetContactById } from "../../lib/react-query/queriesAndMutations";
-import { format } from "date-fns";
-import { formatToBrl } from "../../utils";
-import { useEffect } from "react";
+
 import { ProgressPage } from "../../components/ProgressPage";
 
 const YourInfo = () => {
-  const navigate = useNavigate();
-
   const id = localStorage.getItem("user-info");
-
-  console.log(id);
 
   const { isLoading, data: contact } = useGetContactById(id!);
 
