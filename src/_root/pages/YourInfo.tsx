@@ -1,11 +1,21 @@
 import { useGetContactById } from "../../lib/react-query/queriesAndMutations";
 
 import { ProgressPage } from "../../components/ProgressPage";
+import { useEffect, useState } from "react";
 
 const YourInfo = () => {
-  const id = localStorage.getItem("user-info");
+  const [id, setId] = useState<string | null>(null);
 
-  const { isLoading, data: contact } = useGetContactById(id!);
+  useEffect(() => {
+    const userInfo = localStorage.getItem("user-info");
+    if (userInfo) {
+      setId(userInfo);
+    } else {
+      setId(null);
+    }
+  }, []);
+
+  const { isLoading, data: contact, isError } = useGetContactById(id!);
 
   return isLoading ? (
     <ProgressPage />
@@ -13,6 +23,12 @@ const YourInfo = () => {
     <div className="home__error-container flex justify-center items-center h-[60vh]">
       <h2 className="text-black text-xl font-bold">
         Oops, você não possui nenhuma reserva no momento.
+      </h2>
+    </div>
+  ) : isError ? (
+    <div className="home__error-container flex justify-center items-center h-[60vh]">
+      <h2 className="text-black text-xl font-bold">
+        Oops, algo deu errado, tente novamente depois.
       </h2>
     </div>
   ) : (

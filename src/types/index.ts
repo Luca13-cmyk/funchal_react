@@ -61,7 +61,7 @@ export interface ModelProps {
 
 export interface CustomFilterProps {
   title: string;
-  options: ModelProps[];
+  options: ModelProps[] | undefined;
   model?: string;
 }
 

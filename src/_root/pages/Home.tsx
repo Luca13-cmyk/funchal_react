@@ -56,7 +56,7 @@ const Home = () => {
             ) : (
               <CustomFilter
                 title="model"
-                options={allModels ? allModels : []}
+                options={allModels}
                 model={model ?? ""}
               />
             )}

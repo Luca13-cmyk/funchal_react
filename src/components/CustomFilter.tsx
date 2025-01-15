@@ -12,7 +12,7 @@ export default function CustomFilter({
   options,
   model,
 }: CustomFilterProps) {
-  const [selected, setSelected] = useState(options[0]); // State for storing the selected option
+  const [selected, setSelected] = useState(options?.[0]); // State for storing the selected option
 
   // update the URL search parameters and navigate to the new URL
   const handleUpdateParams = (e: { _id: string; name: string }) => {
@@ -52,7 +52,7 @@ export default function CustomFilter({
           >
             <Listbox.Options className="custom-filter__options">
               {/* Map over the options and display them as listbox options */}
-              {options.map((option: ModelProps) => (
+              {options?.map((option: ModelProps) => (
                 <Listbox.Option
                   key={option._id}
                   className={({ active }) =>

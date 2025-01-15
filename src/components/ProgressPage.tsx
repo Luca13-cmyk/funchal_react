@@ -13,7 +13,7 @@ export function ProgressPage() {
   }, []);
 
   return (
-    <div className="mt-12 padding-x padding-y max-width h-[70vh] flex justify-center items-center">
+    <div className="mt-12 padding-x padding-y md:max-width h-[70vh] flex justify-center items-center">
       <div className="flex flex-col w-full justify-between items-center p-4">
         <Progress value={progress} className="w-[60%]" />
       </div>
