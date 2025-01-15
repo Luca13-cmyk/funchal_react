@@ -1,0 +1,4 @@
+Correções:
+1. consertar not found em abrir o site a partir de um link com id e tambem com suas reservas.
+2. Colocar icone
+3. 

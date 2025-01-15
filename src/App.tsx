@@ -10,8 +10,8 @@ function App() {
       <Routes>
         <Route element={<RootLayout />}>
           <Route index element={<Home />} />
-          <Route path="/car/:id" element={<Car />} />
           <Route path="/your-info" element={<YourInfo />} />
+          <Route path="/car/:id" element={<Car />} />
         </Route>
       </Routes>
     </>
