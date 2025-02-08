@@ -3,6 +3,7 @@ export enum QUERY_KEYS {
   GET_CAR_BY_ID = "getCarById",
   GET_CARS = "getCars",
   GET_INFINITE_CARS = "getInfiniteCars",
+  GET_INFO = "getInfo",
 
   // MODEL KEYS
   GET_MODELS = "getModels",

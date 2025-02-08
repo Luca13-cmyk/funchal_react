@@ -1,6 +1,9 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { urlFor } from "../../lib/client";
-import { useGetCarById } from "../../lib/react-query/queriesAndMutations";
+import {
+  useGetCarById,
+  useGetInfo,
+} from "../../lib/react-query/queriesAndMutations";
 import ContactForm from "../../components/ContactForm";
 import { ProgressPage } from "../../components/ProgressPage";
 
@@ -14,15 +17,16 @@ const Car = () => {
   }
 
   const { isLoading, data: car } = useGetCarById(id);
+  const { isLoading: isInfoLoading, data: allInfo } = useGetInfo();
 
-  return isLoading ? (
+  return isLoading || isInfoLoading ? (
     <ProgressPage />
   ) : !car ? (
     <div className="home__error-container">
       <h2 className="text-black text-xl font-bold">Oops, sem resultados</h2>
     </div>
   ) : (
-    <div className="mt-12 padding-x padding-y max-width">
+    <div className="mt-24 padding-x padding-y max-width">
       <div className="flex flex-col w-full justify-between items-center border-2 border-gray-50 md:shadow-sm p-4">
         <h3 className="hero__subtitle">{car.name}</h3>
         <div className="relative w-full h-40 my-3 flex object-contain justify-center items-center">
@@ -34,7 +38,7 @@ const Car = () => {
         </div>
       </div>
 
-      <ContactForm car={car} />
+      <ContactForm car={car} fee={allInfo!.fee} />
     </div>
   );
 };

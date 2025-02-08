@@ -1,6 +1,4 @@
-// import { footerLinks } from "@/constants";
-
-import { infos, wpp_link, wpp_link_dev } from "../constants";
+import { wpp_link_dev } from "../constants";
 
 const Footer = () => (
   <footer className="flex flex-col text-black-100  mt-5 border-t border-gray-100">
@@ -36,12 +34,8 @@ const Footer = () => (
       <p>@{new Date().getFullYear()} Funchal</p>
 
       <div className="footer__copyrights-link">
-        <p className="text-gray-500">{infos.address}</p>
-        <a href={wpp_link} className="text-gray-500">
-          {infos.wpp}
-        </a>
         <a href={wpp_link_dev} className="text-gray-500">
-          <b>Site Criado Por: </b> Luca Negrette
+          <b>Dev By: </b> Luca Negrette
         </a>
       </div>
     </div>

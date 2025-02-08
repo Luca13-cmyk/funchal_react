@@ -1,4 +1,5 @@
-import { MouseEventHandler } from "react";
+import { LucideProps } from "lucide-react";
+import { MouseEventHandler, ReactNode } from "react";
 
 export interface CarProps {
   _id: string;
@@ -12,13 +13,24 @@ export interface CarProps {
   brand: { name: string };
 }
 
+export interface InfoProps {
+  wpp: string;
+  phone: string;
+  address: string;
+  intro: string;
+  intro_sub: string;
+  fee: number;
+}
+
 export interface ContactProps {
   name: string;
   email: string;
   phone: string;
   car: string;
   startDate: string;
+  timeStartDate: string;
   endDate: string;
+  timeEndDate: string;
   priceTotal: string;
 }
 
@@ -51,9 +63,21 @@ export interface CustomButtonProps {
   textStyles?: string;
   title: string;
   rightIcon?: string;
+  lucideIcon?: ReactNode;
   handleClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
+export interface FormValues {
+  name: string;
+  email: string;
+
+  phone: string;
+  car: string;
+  startDate: Date | string;
+  timeStartDate: string;
+  endDate: Date | string;
+  timeEndDate: string;
+}
 export interface ModelProps {
   _id: string;
   name: string;

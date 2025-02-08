@@ -7,6 +7,7 @@ import { CarProps } from "../../types";
 import CarCard from "../../components/CarCard";
 import {
   useGetCars,
+  useGetInfo,
   useGetModels,
 } from "../../lib/react-query/queriesAndMutations";
 import { handleScroll } from "../../utils";
@@ -22,11 +23,12 @@ const Home = () => {
 
   const { isLoading: isCarsLoading, data: allCars } = useGetCars(params.model);
   const { isLoading: isModelsLoading, data: allModels } = useGetModels();
+  const { isLoading: isInfoLoading, data: allInfo } = useGetInfo();
 
   const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars;
 
   useEffect(() => {
-    if (!isCarsLoading) {
+    if (!isCarsLoading && model) {
       const handler = setTimeout(() => {
         handleScroll();
       }, 200);
@@ -37,11 +39,11 @@ const Home = () => {
     }
   }, [isCarsLoading, model]);
 
-  return isCarsLoading ? (
+  return isCarsLoading || isInfoLoading ? (
     <ProgressPage />
   ) : (
     <div>
-      <Hero />
+      <Hero info={allInfo!} />
       <div className="mt-12 padding-x padding-y max-width" id="discover">
         <div className="home__text-container">
           <h1 className="text-4xl font-extrabold">Catálogo de carros</h1>

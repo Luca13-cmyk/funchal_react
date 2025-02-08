@@ -7,7 +7,7 @@ import { CarProps } from "@/types";
 import CustomButton from "./CustomButton";
 import CarDetails from "./CarDetails";
 
-import { Check } from "lucide-react";
+import { Car, Check } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { urlFor } from "../lib/client";
 
@@ -24,7 +24,7 @@ const CarCard = ({ car }: CarCardProps) => {
 
   return (
     <div
-      className="car-card group cursor-pointer"
+      className="car-card group cursor-pointer md:hover:scale-110 transition-all ease-out duration-300"
       onClick={(e) => {
         e.stopPropagation();
         setIsOpen(true);
@@ -46,44 +46,28 @@ const CarCard = ({ car }: CarCardProps) => {
         </span>
       </p>
 
-      <div className="relative w-full h-40 my-3 object-contain">
+      <div className="relative w-full h-48 my-3 object-contain">
         <img
           src={urlFor(imgUrl).url()}
           alt={name}
-          className="object-contain rounded-md"
+          className="object-contain rounded-xl h-48 mx-auto"
         />
       </div>
 
       <div className="relative flex w-full mt-2">
         <div className="flex group-hover:invisible w-full justify-between text-grey">
-          {/* <div className="flex flex-col justify-center items-center gap-2">
-            <Image
-              src="/steering-wheel.svg"
-              width={20}
-              height={20}
-              alt="steering wheel"
-            />
-            <p className="text-[14px] leading-[17px]">
-              {transmission === "a" ? "Automatic" : "Manual"}
-            </p>
-          </div> */}
           <div className="car-card__icon">
             {available && (
               <>
-                <Check color="green" />
-                <p className="car-card__icon-text">{available}</p>
+                <Car color="black" />
+                <p className="car-card__icon-text text-black">{available}</p>
               </>
             )}
           </div>
-          {/* <div className="car-card__icon">
-            <Image src="/gas.svg" width={20} height={20} alt="seat" />
-            <p className="car-card__icon-text">{city_mpg} MPG</p>
-          </div> */}
         </div>
-
         <div className="car-card__btn-container">
           <CustomButton
-            title="Reserve agora"
+            title="Pré-reserve agora"
             containerStyles="w-full py-[16px] rounded-full bg-primary-blue"
             textStyles="text-white text-[14px] leading-[17px] font-bold"
             rightIcon="/right-arrow.svg"

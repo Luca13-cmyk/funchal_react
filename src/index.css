@@ -120,7 +120,7 @@
 }
 
 .car-card__icon {
-  @apply flex flex-col justify-center items-center gap-2;
+  @apply flex flex-row justify-center items-center gap-2;
 }
 
 .car-card__icon-text {

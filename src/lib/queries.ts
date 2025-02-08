@@ -19,6 +19,17 @@ export const MODELS_QUERY = `*[_type == "model"] | order(_createdAt desc) {
   name,
 }`;
 
+export const INFO_QUERY = `*[_type == "info"][0] {
+  _id,
+  wpp,
+  phone,
+  address,
+  intro,
+  intro_sub,
+  fee,
+  socials,
+}`;
+
 export const CAR_BY_ID = `*[_type == "car" && _id == $id][0] {
   _id,
   price,
@@ -43,5 +54,7 @@ export const CONTACT_BY_ID = `*[_type == "contact" && _id == $id][0] {
     car,
     startDate,
     endDate,
-    priceTotal
+    priceTotal,
+    timeStartDate,
+    timeEndDate
 }`;

@@ -20,9 +20,9 @@ const YourInfo = () => {
   return isLoading ? (
     <ProgressPage />
   ) : !contact ? (
-    <div className="home__error-container flex justify-center items-center h-[60vh]">
+    <div className="home__error-container flex justify-center items-center h-[60vh] p-5">
       <h2 className="text-black text-xl font-bold">
-        Oops, você não possui nenhuma reserva no momento.
+        Oops, você não possui nenhuma pré-reserva no momento.
       </h2>
     </div>
   ) : isError ? (
@@ -32,13 +32,15 @@ const YourInfo = () => {
       </h2>
     </div>
   ) : (
-    <div className="mt-12 padding-x padding-y max-width">
+    <div className="mt-24 padding-x padding-y max-width">
       <div className="flex flex-col w-full justify-center items-center border-2 border-gray-50 md:shadow-sm p-4">
         <div className="w-full">
           <div className="px-4 sm:px-0">
-            <h3 className="text-base/7 font-semibold text-gray-900">Reserva</h3>
+            <h3 className="text-base/7 font-semibold text-gray-900">
+              Pré-eserva
+            </h3>
             <p className="mt-1 max-w-2xl text-sm/6 text-gray-500">
-              Informações sobre a sua reserva
+              Informações sobre a sua pré-reserva
             </p>
           </div>
           <div className="mt-6 border-t border-gray-100">
@@ -74,7 +76,7 @@ const YourInfo = () => {
                   Retirada
                 </dt>
                 <dd className="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  {contact.startDate}
+                  {contact.startDate} {contact.timeStartDate}
                 </dd>
               </div>
               <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
@@ -82,7 +84,7 @@ const YourInfo = () => {
                   Devolução
                 </dt>
                 <dd className="mt-1 text-sm/6 text-gray-700 sm:col-span-2 sm:mt-0">
-                  {contact.endDate}
+                  {contact.endDate} {contact.timeEndDate}
                 </dd>
               </div>
               <div className="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">

@@ -22,12 +22,19 @@ import { Calendar } from "./ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { rent_fee } from "@/constants";
 import { calculatePriceTotal, formatToBrl } from "@/utils";
 
 import { useNavigate } from "react-router-dom";
 import { useToast } from "../hooks/use-toast";
 import { SanityDocument } from "@sanity/client";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
+import { hours_rent } from "@/constants";
 
 const formSchema = z.object({
   name: z.string().min(3, {
@@ -41,10 +48,12 @@ const formSchema = z.object({
   }),
   car: z.string(),
   startDate: z.date(),
+  timeStartDate: z.string(),
   endDate: z.date(),
+  timeEndDate: z.string(),
 });
 
-const ContactForm = ({ car }: { car: CarProps }) => {
+const ContactForm = ({ car, fee }: { car: CarProps; fee: number }) => {
   const { toast } = useToast();
   const [isPending, setIsPending] = useState(false);
   const navigate = useNavigate();
@@ -68,7 +77,8 @@ const ContactForm = ({ car }: { car: CarProps }) => {
 
       const respo: SanityDocument<Record<string, any>> = await createContact(
         values,
-        car
+        car,
+        fee
       );
 
       localStorage.setItem("user-info", respo._id);
@@ -176,6 +186,35 @@ const ContactForm = ({ car }: { car: CarProps }) => {
           />
           <FormField
             control={form.control}
+            name="timeStartDate"
+            render={({ field }) => (
+              <FormItem className="max-w-[240px]">
+                <FormControl>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Horário de retirada" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {hours_rent.map((hour) => (
+                        <SelectItem key={hour} value={hour}>
+                          {hour}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </FormControl>
+
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
             name="endDate"
             render={({ field }) => (
               <FormItem className="flex flex-col">
@@ -214,13 +253,47 @@ const ContactForm = ({ car }: { car: CarProps }) => {
               </FormItem>
             )}
           />
+          <FormField
+            control={form.control}
+            name="timeEndDate"
+            render={({ field }) => (
+              <FormItem className="max-w-[240px]">
+                <FormControl>
+                  <Select
+                    onValueChange={field.onChange}
+                    defaultValue={field.value}
+                  >
+                    <FormControl>
+                      <SelectTrigger>
+                        <SelectValue placeholder="Horário de devolução" />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent>
+                      {hours_rent.map((hour) => (
+                        <SelectItem key={hour} value={hour}>
+                          {hour}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </FormControl>
+
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <Button
             type="button"
             onClick={() => {
               const endDate = form.getValues().endDate;
               const startDate = form.getValues().startDate;
 
-              const priceTotal = calculatePriceTotal(endDate, startDate, car);
+              const priceTotal = calculatePriceTotal(
+                endDate,
+                startDate,
+                car,
+                fee
+              );
 
               setPriceTotal(priceTotal);
             }}
@@ -234,7 +307,7 @@ const ContactForm = ({ car }: { car: CarProps }) => {
 
         <div className="flex flex-col gap-2 border-t-2 border-gray-100 p-2">
           <div className="space-y-2">
-            <p>Taxa de aluguel ({rent_fee.toString().replace("1.", "")}%)</p>
+            <p>Taxa de aluguel ({fee}%)</p>
             <p>
               <b>{formatToBrl(car.price)}</b>/dia
             </p>
@@ -248,7 +321,7 @@ const ContactForm = ({ car }: { car: CarProps }) => {
             className="bg-primary-blue text-white md:w-64"
             disabled={isPending}
           >
-            {isPending ? "Enviando..." : "Reservar"}
+            {isPending ? "Enviando..." : "Pré-reservar"}
           </Button>
         </div>
       </form>

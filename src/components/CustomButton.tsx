@@ -7,6 +7,7 @@ const CustomButton = ({
   textStyles,
   title,
   rightIcon,
+  lucideIcon,
   handleClick,
 }: CustomButtonProps) => (
   <button
@@ -21,6 +22,7 @@ const CustomButton = ({
         <img src={rightIcon} alt="arrow_left" className="object-contain" />
       </div>
     )}
+    {lucideIcon && <div className="relative w-6 h-6 mx-2">{lucideIcon}</div>}
   </button>
 );
 

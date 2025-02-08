@@ -1,28 +1,33 @@
-import { CarProps } from "@/types";
+import { CarProps, FormValues, InfoProps } from "@/types";
 import { differenceInDays, format } from "date-fns";
-import { formatToBrl } from ".";
-import { rent_fee } from "@/constants";
+import { calculatePercentage, formatToBrl } from ".";
+
 import { client } from "../lib/client";
 import {
   CAR_BY_ID,
   CARS_QUERY,
   CONTACT_BY_ID,
+  INFO_QUERY,
   MODELS_QUERY,
 } from "../lib/queries";
 import { SanityDocument } from "@sanity/client";
 import { ContactProps, ModelProps } from "../types";
 
 export const createContact = async (
-  values: any,
-  car: CarProps
+  values: FormValues,
+  car: CarProps,
+  fee: number
 ): Promise<SanityDocument<Record<string, any>>> => {
-  const difference_days = differenceInDays(values.endDate, values.startDate);
+  const difference_days =
+    differenceInDays(values.endDate, values.startDate) + 1;
 
   const data = {
     ...values,
     endDate: format(values.endDate, "MM/dd/yyyy"),
     startDate: format(values.startDate, "MM/dd/yyyy"),
-    priceTotal: formatToBrl(car.price * difference_days * rent_fee),
+    priceTotal: formatToBrl(
+      car.price * difference_days * calculatePercentage(fee)
+    ),
   };
 
   const result = await client.create({
@@ -39,6 +44,13 @@ export const getCars = async (model: string | null) => {
   if (!allCars) throw Error;
 
   return allCars;
+};
+export const getInfo = async () => {
+  const info: InfoProps = await client.fetch(INFO_QUERY);
+
+  if (!info) throw Error;
+
+  return info;
 };
 
 export const getModels = async () => {

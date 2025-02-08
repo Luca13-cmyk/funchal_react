@@ -1,4 +1,3 @@
-import { rent_fee } from "@/constants";
 import { CarProps } from "@/types";
 import { differenceInDays } from "date-fns";
 
@@ -39,16 +38,21 @@ export const formatToBrl = (number: number) => {
   return formattedNumber;
 };
 
+export const calculatePercentage = (percentage: number) => {
+  return percentage / 100 + 1;
+};
 export const calculatePriceTotal = (
   endDate: Date,
   startDate: Date,
-  car: CarProps
+  car: CarProps,
+  fee: number
 ) => {
   if (!endDate || !startDate) return formatToBrl(car.price);
 
-  const difference_days = differenceInDays(endDate, startDate);
+  const difference_days = differenceInDays(endDate, startDate) + 1;
 
-  const priceTotalwithFee = car.price * difference_days * rent_fee;
+  const priceTotalwithFee =
+    car.price * difference_days * calculatePercentage(fee);
 
   const priceTotalFormatted = formatToBrl(priceTotalwithFee);
 

@@ -4,6 +4,7 @@ import {
   getCarById,
   getCars,
   getContactById,
+  getInfo,
   getModels,
 } from "../../utils/actions";
 
@@ -13,6 +14,13 @@ export const useGetCars = (model: string | null) => {
     queryFn: () => getCars(model),
   });
 };
+export const useGetInfo = () => {
+  return useQuery({
+    queryKey: [QUERY_KEYS.GET_INFO],
+    queryFn: () => getInfo(),
+  });
+};
+
 export const useGetModels = () => {
   return useQuery({
     queryKey: [QUERY_KEYS.GET_MODELS],

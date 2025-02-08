@@ -42,7 +42,7 @@ export const manufacturers = [
   "Volvo",
 ];
 
-export const rent_fee = 1.12;
+export const rent_fee = 1.11;
 
 export const fuels = [
   {
@@ -111,13 +111,35 @@ export const footerLinks = [
 // Infos
 
 export const infos = {
-  wpp: "739999999",
-  phone: "55965565",
+  wpp: "7391910313",
+  phone: "(73) 30173028 / 991910313",
   address: "R. David Maia, 246 - Pontal",
-  intro: "Funchal - Locadora de carros em Ilhéus",
+  intro: "Locadora de carros em Ilhéus",
   intro_sub: "Estamos localizados em frente ao aeroporto de Ilhéus",
 };
 
-export const wpp_link = `https://wa.me//${infos.wpp}?text=Tenho%20interesse%20em%20alugar%20seu%20carro`;
+export const wpp_link = (wpp: string) => {
+  return `https://wa.me//${wpp}?text=Tenho%20interesse%20em%20alugar%20seu%20carro`;
+};
 
 export const wpp_link_dev = `https://wa.me//${73991089974}`;
+
+export const hours_rent = [
+  "09:30",
+  "10:00",
+  "10:30",
+  "11:00",
+  "11:30",
+  "12:00",
+  "12:30",
+  "13:00",
+  "13:30",
+  "14:00",
+  "14:30",
+  "15:00",
+  "15:30",
+  "16:00",
+  "16:30",
+  "17:00",
+  "17:30",
+];
