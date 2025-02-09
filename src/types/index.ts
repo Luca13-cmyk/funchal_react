@@ -1,4 +1,3 @@
-import { LucideProps } from "lucide-react";
 import { MouseEventHandler, ReactNode } from "react";
 
 export interface CarProps {

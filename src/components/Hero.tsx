@@ -2,7 +2,7 @@ import { InfoProps } from "@/types";
 import { wpp_link } from "../constants";
 import { handleScroll } from "../utils";
 import CustomButton from "./CustomButton";
-import { ArrowBigDownDash, Phone, Smartphone } from "lucide-react";
+import { ArrowBigDownDash, Smartphone } from "lucide-react";
 
 const Hero = ({ info }: { info: InfoProps }) => {
   return (

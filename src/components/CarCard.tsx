@@ -7,7 +7,7 @@ import { CarProps } from "@/types";
 import CustomButton from "./CustomButton";
 import CarDetails from "./CarDetails";
 
-import { Car, Check } from "lucide-react";
+import { Car } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { urlFor } from "../lib/client";
 
