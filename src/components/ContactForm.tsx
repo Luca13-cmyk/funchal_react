@@ -77,7 +77,7 @@ const ContactForm = ({ car, fee }: { car: CarProps; fee: number }) => {
       // Envio do e-mail
       try {
         const emailData = {
-          to: "lucanegresco@gmail.com", // Substitua pelo destinatário real
+          to: "reservasfunchallocadora@gmail.com", // Substitua pelo destinatário real
           subject: "Nova Pré-Reserva de Carro",
           html: generateEmailBody({
             ...values, // Passa os valores do formulário
