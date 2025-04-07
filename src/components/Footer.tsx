@@ -35,7 +35,7 @@ const Footer = () => (
 
       <div className="footer__copyrights-link">
         <a href={wpp_link_dev} className="text-gray-500">
-          <b>Dev By: </b> Luca Negrette
+          <b>Dev: </b> Luca Negrette
         </a>
       </div>
     </div>

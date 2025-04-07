@@ -68,9 +68,11 @@ const Home = () => {
         {!isDataEmpty ? (
           <section>
             <div className="home__cars-wrapper">
-              {allCars?.map((car: CarProps) => (
-                <CarCard key={car._id} car={car} />
-              ))}
+              {allCars
+                ?.sort((a: CarProps, b: CarProps) => a.price - b.price) // Ordena por preço, do menor para o maior
+                .map((car: CarProps) => (
+                  <CarCard key={car._id} car={car} />
+                ))}
             </div>
 
             {/* <ShowMore

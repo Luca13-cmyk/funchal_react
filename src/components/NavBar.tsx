@@ -4,10 +4,14 @@ const NavBar = () => (
   <header className="w-full  absolute z-10">
     <nav className="max-w-[1440px] mx-auto flex justify-between items-center sm:px-16 px-6 py-4 bg-transparent">
       <a href="/" className="flex justify-center items-center">
-        <img src="/funchal_logo.png" alt="Logo" className="w-12 h-12 m-2" />
-        <p>
+        <img
+          src="/funchal_logo.png"
+          alt="Logo"
+          className="w-12 h-12 md:w-[82px] md:h-[82px] m-2"
+        />
+        <h2>
           <b className="antialiased uppercase">Funchal</b>
-        </p>
+        </h2>
       </a>
       <a
         href="/your-info"

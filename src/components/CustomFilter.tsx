@@ -6,6 +6,7 @@ import { CustomFilterProps } from "@/types";
 
 import { updateSearchParams } from "../utils";
 import { ModelProps } from "../types";
+import { Button } from "./ui/button";
 
 export default function CustomFilter({
   title,
@@ -23,7 +24,7 @@ export default function CustomFilter({
   };
 
   return (
-    <div className="w-fit">
+    <div className="w-fit flex flex-row gap-4">
       <Listbox
         value={selected}
         onChange={(e) => {
@@ -79,6 +80,17 @@ export default function CustomFilter({
           </Transition>
         </div>
       </Listbox>
+      <Button
+        title="Limpar"
+        variant={"outline"}
+        onClick={() => {
+          const url = new URL(window.location.href);
+          url.search = "";
+          window.location.href = url.toString();
+        }}
+      >
+        Limpar
+      </Button>
     </div>
   );
 }

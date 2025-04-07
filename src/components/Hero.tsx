@@ -2,7 +2,12 @@ import { InfoProps } from "@/types";
 import { wpp_link } from "../constants";
 import { handleScroll } from "../utils";
 import CustomButton from "./CustomButton";
-import { ArrowBigDownDash, Smartphone } from "lucide-react";
+import {
+  ArrowBigDownDash,
+  MapPinHouse,
+  PhoneCall,
+  Smartphone,
+} from "lucide-react";
 
 const Hero = ({ info }: { info: InfoProps }) => {
   return (
@@ -10,13 +15,20 @@ const Hero = ({ info }: { info: InfoProps }) => {
       <div className="flex-1 pt-36 padding-x">
         <h1 className="hero__title">{info.intro}</h1>
 
-        <p className="hero__subtitle">{info.intro_sub}</p>
+        <p className="hero__subtitle">
+          <b>{info.intro_sub}</b>
+        </p>
         <br />
         <hr />
         <p className="hero__subtitle">
-          <small className="">
-            <b>Endereço:</b> {info.address} <br />
-            <b>Telefone:</b> {info.phone}
+          <small className="flex flex-col gap-2 items-start justify-center">
+            <b className="flex flex-row gap-2 items-center justify-center">
+              <MapPinHouse /> {info.address} <br />
+            </b>
+            <b className="flex flex-row gap-2 items-center justify-center">
+              <PhoneCall />
+              {info.phone}
+            </b>
           </small>
         </p>
         <div className="flex flw-row gap-2">

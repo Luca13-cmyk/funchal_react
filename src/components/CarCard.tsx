@@ -65,15 +65,25 @@ const CarCard = ({ car }: CarCardProps) => {
             )}
           </div>
         </div>
-        <div className="car-card__btn-container">
+        <div className="car-card__btn-container flex-col">
           <CustomButton
             title="Pré-reserve agora"
-            containerStyles="w-full py-[16px] rounded-full bg-primary-blue"
+            containerStyles="w-full py-[16px] rounded-full bg-primary-blue hover:bg-primary-blue/90"
             textStyles="text-white text-[14px] leading-[17px] font-bold"
             rightIcon="/right-arrow.svg"
             handleClick={(e: any) => {
               e.stopPropagation();
               navigate(`/car/${_id}`);
+            }}
+          />
+          <CustomButton
+            title="Mostrar detalhes"
+            containerStyles="w-full py-[2px] rounded-full bg-transparent"
+            textStyles="text-[14px] leading-[17px] font-bold hover:text-primary-blue"
+            rightIcon="/right-arrow.svg"
+            handleClick={(e: any) => {
+              e.stopPropagation();
+              setIsOpen(true);
             }}
           />
         </div>
