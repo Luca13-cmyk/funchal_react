@@ -74,13 +74,6 @@ const ContactForm = ({ car, fee }: { car: CarProps; fee: number }) => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       setIsPending(true);
-
-      const respo: SanityDocument<Record<string, any>> = await createContact(
-        values,
-        car,
-        fee
-      );
-
       // Envio do e-mail
       try {
         const emailData = {
@@ -96,7 +89,18 @@ const ContactForm = ({ car, fee }: { car: CarProps; fee: number }) => {
         await sendEmail(emailData);
       } catch (emailError) {
         console.error("Erro ao enviar o email:", emailError);
+        toast({
+          title: "Erro ao enviar o email.",
+          description: "",
+          variant: "destructive",
+        });
+        return;
       }
+      const respo: SanityDocument<Record<string, any>> = await createContact(
+        values,
+        car,
+        fee
+      );
 
       localStorage.setItem("user-info", respo._id);
 

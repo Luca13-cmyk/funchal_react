@@ -13,7 +13,12 @@ export const sendEmail = async (emailData: {
   try {
     const response = await axios.post(
       "https://funchal.vercel.app/api/send-email",
-      emailData
+      emailData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
     ); // Adjust endpoint as needed
     return response.data;
   } catch (error) {
