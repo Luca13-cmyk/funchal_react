@@ -21,7 +21,7 @@ import { CarProps } from "@/types";
 import { Calendar } from "./ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/popover";
 import { CalendarIcon } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, generateEmailBody, sendEmail } from "@/lib/utils";
 import { calculatePriceTotal, formatToBrl } from "@/utils";
 
 import { useNavigate } from "react-router-dom";
@@ -80,6 +80,23 @@ const ContactForm = ({ car, fee }: { car: CarProps; fee: number }) => {
         car,
         fee
       );
+
+      // Envio do e-mail
+      try {
+        const emailData = {
+          to: "lucanegresco@gmail.com", // Substitua pelo destinatário real
+          subject: "Nova Pré-Reserva de Carro",
+          html: generateEmailBody({
+            ...values, // Passa os valores do formulário
+            startDate: format(values.startDate, "yyyy-MM-dd"), // Converte para string
+            endDate: format(values.endDate, "yyyy-MM-dd"), // Converte para string
+            priceTotal, // Inclui o preço total calculado
+          }),
+        };
+        await sendEmail(emailData);
+      } catch (emailError) {
+        console.error("Erro ao enviar o email:", emailError);
+      }
 
       localStorage.setItem("user-info", respo._id);
 
