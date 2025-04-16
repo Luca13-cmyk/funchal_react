@@ -11,7 +11,7 @@ import {
 
 const Hero = ({ info }: { info: InfoProps }) => {
   return (
-    <div className="hero">
+    <div className="hero mt-12">
       <div className="flex-1 pt-36 padding-x">
         <h1 className="hero__title">{info.intro}</h1>
 
@@ -51,7 +51,7 @@ const Hero = ({ info }: { info: InfoProps }) => {
       <div className="hero__image-container">
         <div className="hero__image">
           <img
-            src="/hero.png"
+            src="/hero4.png"
             alt="hero"
             className="object-contain absolute inset-0 h-full w-full "
           />

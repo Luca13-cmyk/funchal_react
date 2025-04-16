@@ -7,10 +7,10 @@ const NavBar = () => (
         <img
           src="/funchal_logo.png"
           alt="Logo"
-          className="w-12 h-12 md:w-[82px] md:h-[82px] m-2"
+          className="w-16 h-16 md:w-[150px] md:h-[150px] m-2"
         />
-        <h2>
-          <b className="antialiased uppercase">Funchal</b>
+        <h2 className="text-3xl">
+          <b className="antialiased uppercase ">Funchal</b>
         </h2>
       </a>
       <a

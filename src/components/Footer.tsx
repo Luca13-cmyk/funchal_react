@@ -16,13 +16,7 @@ const Footer = () => (
             <h3 className="font-bold">{item.title}</h3>
             <div className="flex flex-col gap-5">
               {item.links.map((link) => (
-                <Link
-                  key={link.title}
-                  href={link.url}
-                  className="text-gray-500"
-                >
-                  {link.title}
-                </Link>
+                <div>{link.title}</div>
               ))}
             </div>
           </div>
