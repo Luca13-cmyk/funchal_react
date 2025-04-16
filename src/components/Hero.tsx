@@ -22,11 +22,11 @@ const Hero = ({ info }: { info: InfoProps }) => {
         <hr />
         <p className="hero__subtitle">
           <small className="flex flex-col gap-2 items-start justify-center">
-            <b className="flex flex-row gap-2 items-center justify-center">
-              <MapPinHouse /> {info.address} <br />
+            <b className="flex flex-row gap-2 items-center justify-center text-black">
+              <MapPinHouse size={22} /> {info.address} <br />
             </b>
-            <b className="flex flex-row gap-2 items-center justify-center">
-              <PhoneCall />
+            <b className="flex flex-row gap-2 items-center justify-center  text-black max-sm:text-xl">
+              <PhoneCall size={25} />
               {info.phone}
             </b>
           </small>
